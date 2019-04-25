@@ -682,8 +682,8 @@ class ChatBot extends Component {
               />
             )}
             {!currentStep.hideInput && !hideSubmitButton && (
-              <div>
-                bork
+              <div className="rsc-buttons">
+                {currentStep.additionalButton}
                 <SubmitButton
                   className="rsc-submit-button"
                   style={submitButtonStyle}
