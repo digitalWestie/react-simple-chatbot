@@ -517,7 +517,7 @@ class ChatBot extends Component {
   };
 
   renderControl = (controlComponent, index) => {
-    return <div key={index}>{controlComponent}</div>;
+    return <div className="rsc-custom-control" key={index}>{controlComponent}</div>;
   };
 
   renderStep = (step, index) => {
