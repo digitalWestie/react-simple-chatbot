@@ -371,4 +371,32 @@ describe('ChatBot', () => {
       expect(wrapper.find('input.rsc-input').props().autoComplete).to.be.equal('firstname');
     });
   });
+/*
+  describe('Custom Controls', () => {
+    const CustomControl = () => (
+      <button className="my-button">custom</button>
+    );
+
+    const wrapper = mount(
+      <ChatBot
+        steps={[
+          {
+            id: '1',
+            user: true,
+            additionalControls: [<CustomControl/>],
+            trigger: '2'
+          },
+          {
+            id: '2',
+            message: 'end',
+            end: true
+          }
+        ]}
+      />,
+    );
+
+    it('should be rendered with an extra control beside submit button', () => {
+      expect(wrapper.find('div.rsc-buttons button.my-button')).to.have.length(1);
+    });
+  });*/
 });

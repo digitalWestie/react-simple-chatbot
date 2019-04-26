@@ -516,6 +516,10 @@ class ChatBot extends Component {
     }
   };
 
+  renderControl = (controlComponent) => {
+    return controlComponent;
+  };
+
   renderStep = (step, index) => {
     const { renderedSteps } = this.state;
     const {
@@ -681,9 +685,9 @@ class ChatBot extends Component {
                 {...inputAttributesOverride}
               />
             )}
-            {!currentStep.hideInput && !hideSubmitButton && (
-              <div className="rsc-buttons">
-                {currentStep.additionalButton}
+            <div className="rsc-buttons">
+              {currentStep.additionalControls != undefined && currentStep.additionalControls.map(this.renderControl)}
+              {!currentStep.hideInput && !hideSubmitButton && (
                 <SubmitButton
                   className="rsc-submit-button"
                   style={submitButtonStyle}
@@ -694,8 +698,8 @@ class ChatBot extends Component {
                 >
                   {icon}
                 </SubmitButton>
-              </div>
-            )}
+              )}
+            </div>
           </Footer>
         </ChatBotContainer>
       </div>
