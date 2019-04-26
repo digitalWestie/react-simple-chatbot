@@ -516,8 +516,8 @@ class ChatBot extends Component {
     }
   };
 
-  renderControl = controlComponent => {
-    return controlComponent;
+  renderControl = (controlComponent, index) => {
+    return <div key={index}>{controlComponent}</div>;
   };
 
   renderStep = (step, index) => {
