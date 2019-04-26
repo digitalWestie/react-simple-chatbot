@@ -516,7 +516,7 @@ class ChatBot extends Component {
     }
   };
 
-  renderControl = (controlComponent) => {
+  renderControl = controlComponent => {
     return controlComponent;
   };
 
@@ -686,7 +686,8 @@ class ChatBot extends Component {
               />
             )}
             <div className="rsc-buttons">
-              {currentStep.additionalControls != undefined && currentStep.additionalControls.map(this.renderControl)}
+              {currentStep.additionalControls !== undefined &&
+                currentStep.additionalControls.map(this.renderControl)}
               {!currentStep.hideInput && !hideSubmitButton && (
                 <SubmitButton
                   className="rsc-submit-button"
