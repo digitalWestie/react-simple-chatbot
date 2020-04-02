@@ -20,6 +20,13 @@ import Recognition from './recognition';
 import { ChatIcon, CloseIcon, SubmitIcon, MicIcon } from './icons';
 import { isMobile } from './utils';
 import { speakFn } from './speechSynthesis';
+import * as flatted from 'flatted/cjs';
+
+globalThis.rsc = {};
+globalThis.rsc.parse = flatted.parse;
+globalThis.rsc.stringify = flatted.stringify;
+globalThis.rsc.setItem = localStorage.setItem.bind(localStorage);
+globalThis.rsc.getItem = localStorage.getItem.bind(localStorage);
 
 class ChatBot extends Component {
   /* istanbul ignore next */
@@ -38,6 +45,19 @@ class ChatBot extends Component {
     this.setInputRef = element => {
       this.input = element;
     };
+
+    if(this.props.parse !== undefined) {
+      globalThis.rsc.parse = this.props.parse;
+    }
+    if(this.props.stringify !== undefined) {
+      globalThis.rsc.stringify = this.props.stringify;
+    }
+    if(this.props.setItem !== undefined) {
+      globalThis.rsc.setItem = this.props.setItem;
+    }
+    if(this.props.getItem !== undefined) {
+      globalThis.rsc.getItem = this.props.getItem;
+    }
 
     this.state = {
       renderedSteps: [],
