@@ -22,16 +22,18 @@ import { isMobile } from './utils';
 import { speakFn } from './speechSynthesis';
 import * as flatted from 'flatted/cjs';
 
-globalThis.rsc = {};
-globalThis.rsc.parse = flatted.parse;
-globalThis.rsc.stringify = flatted.stringify;
-globalThis.rsc.setItem = localStorage.setItem.bind(localStorage);
-globalThis.rsc.getItem = localStorage.getItem.bind(localStorage);
+window.rsc = {};
+window.rsc.parse = flatted.parse;
+window.rsc.stringify = flatted.stringify;
+window.rsc.setItem = localStorage.setItem.bind(localStorage);
+window.rsc.getItem = localStorage.getItem.bind(localStorage);
 
 class ChatBot extends Component {
   /* istanbul ignore next */
   constructor(props) {
     super(props);
+
+    const [parse, stringify, setITem, getItem] = props;
 
     this.content = null;
     this.input = null;
@@ -46,17 +48,17 @@ class ChatBot extends Component {
       this.input = element;
     };
 
-    if(this.props.parse !== undefined) {
-      globalThis.rsc.parse = this.props.parse;
+    if(parse !== undefined) {
+      window.parse = parse;
     }
-    if(this.props.stringify !== undefined) {
-      globalThis.rsc.stringify = this.props.stringify;
+    if(stringify !== undefined) {
+      window.stringify = stringify;
     }
-    if(this.props.setItem !== undefined) {
-      globalThis.rsc.setItem = this.props.setItem;
+    if(setItem !== undefined) {
+      window.setItem = setItem;
     }
-    if(this.props.getItem !== undefined) {
-      globalThis.rsc.getItem = this.props.getItem;
+    if(getItem !== undefined) {
+      window.getItem = getItem;
     }
 
     this.state = {
