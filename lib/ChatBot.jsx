@@ -48,16 +48,16 @@ class ChatBot extends Component {
       this.input = element;
     };
 
-    if(parse !== undefined) {
+    if (parse !== undefined) {
       window.parse = parse;
     }
-    if(stringify !== undefined) {
+    if (stringify !== undefined) {
       window.stringify = stringify;
     }
-    if(setItem !== undefined) {
+    if (setItem !== undefined) {
       window.setItem = setItem;
     }
-    if(getItem !== undefined) {
+    if (getItem !== undefined) {
       window.getItem = getItem;
     }
 
