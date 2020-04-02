@@ -33,7 +33,7 @@ class ChatBot extends Component {
   constructor(props) {
     super(props);
 
-    const [parse, stringify, setItem, getItem] = props;
+    const { parse, stringify, setItem, getItem } = props;
 
     this.content = null;
     this.input = null;
