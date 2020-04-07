@@ -146,7 +146,7 @@ class ChatBot extends Component {
       window.addEventListener('resize', this.onResize);
     }
 
-    const { currentStep, previousStep, previousSteps, renderedSteps } = storage.getData(
+     storage.getData(
       {
         cacheName,
         cache,
@@ -163,15 +163,17 @@ class ChatBot extends Component {
           }
         });
       }
-    );
+    ).then((data) => {
+      const { currentStep, previousStep, previousSteps, renderedSteps } = data;
 
-    this.setState({
-      currentStep,
-      defaultUserSettings,
-      previousStep,
-      previousSteps,
-      renderedSteps,
-      steps: chatSteps
+      this.setState({
+        currentStep,
+        defaultUserSettings,
+        previousStep,
+        previousSteps,
+        renderedSteps,
+        steps: chatSteps
+      });
     });
   }
 
