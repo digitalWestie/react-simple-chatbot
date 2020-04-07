@@ -146,33 +146,37 @@ class ChatBot extends Component {
       window.addEventListener('resize', this.onResize);
     }
 
-    const { currentStep, previousStep, previousSteps, renderedSteps } = storage.getData(
-      {
-        cacheName,
-        cache,
-        firstStep,
-        steps: chatSteps
-      },
-      () => {
-        // focus input if last step cached is a user step
-        this.setState({ disabled: false }, () => {
-          if (enableMobileAutoFocus || !isMobile()) {
-            if (this.input) {
-              this.input.focus();
+    storage
+      .getData(
+        {
+          cacheName,
+          cache,
+          firstStep,
+          steps: chatSteps
+        },
+        () => {
+          // focus input if last step cached is a user step
+          this.setState({ disabled: false }, () => {
+            if (enableMobileAutoFocus || !isMobile()) {
+              if (this.input) {
+                this.input.focus();
+              }
             }
-          }
-        });
-      }
-    );
+          });
+        }
+      )
+      .then(data => {
+        const { currentStep, previousStep, previousSteps, renderedSteps } = data;
 
-    this.setState({
-      currentStep,
-      defaultUserSettings,
-      previousStep,
-      previousSteps,
-      renderedSteps,
-      steps: chatSteps
-    });
+        this.setState({
+          currentStep,
+          defaultUserSettings,
+          previousStep,
+          previousSteps,
+          renderedSteps,
+          steps: chatSteps
+        });
+      });
   }
 
   static getDerivedStateFromProps(props, state) {
