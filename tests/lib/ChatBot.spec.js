@@ -301,6 +301,7 @@ describe('ChatBot', () => {
     );
 
     it('should be rendered without input', () => {
+      wrapper.update();
       expect(wrapper.find('input.rsc-input')).to.have.length(0);
     });
   });
@@ -368,6 +369,7 @@ describe('ChatBot', () => {
     );
 
     it('should be rendered with input to autocomplete on \'firstname\'', () => {
+      wrapper.update();
       expect(wrapper.find('input.rsc-input').props().autoComplete).to.be.equal('firstname');
     });
   });
