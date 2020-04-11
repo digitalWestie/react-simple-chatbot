@@ -35,6 +35,8 @@ class ChatBot extends Component {
 
     const { parse, stringify, setItem, getItem } = props;
 
+    const forceUpdate = this.forceUpdate.bind(this);
+
     this.content = null;
     this.input = null;
 
@@ -146,6 +148,14 @@ class ChatBot extends Component {
       window.addEventListener('resize', this.onResize);
     }
 
+    window.rsc.refresh = () => {
+      this.load(cacheName,cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus);
+    }
+
+    this.load(cacheName,cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus);
+  }
+
+  load = (cacheName,cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus) => {
     storage
       .getData(
         {
