@@ -35,8 +35,6 @@ class ChatBot extends Component {
 
     const { parse, stringify, setItem, getItem } = props;
 
-    const forceUpdate = this.forceUpdate.bind(this);
-
     this.content = null;
     this.input = null;
 
@@ -155,6 +153,24 @@ class ChatBot extends Component {
     this.load(cacheName, cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus);
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const { opened, toggleFloating } = props;
+    if (toggleFloating !== undefined && opened !== undefined && opened !== state.opened) {
+      return {
+        ...state,
+        opened
+      };
+    }
+    return state;
+  }
+
+  componentWillUnmount() {
+    if (this.content) {
+      this.content.removeEventListener('DOMNodeInserted', this.onNodeInserted);
+      window.removeEventListener('resize', this.onResize);
+    }
+  }
+
   load = (cacheName, cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus) => {
     storage
       .getData(
@@ -188,24 +204,6 @@ class ChatBot extends Component {
         });
       });
   };
-
-  static getDerivedStateFromProps(props, state) {
-    const { opened, toggleFloating } = props;
-    if (toggleFloating !== undefined && opened !== undefined && opened !== state.opened) {
-      return {
-        ...state,
-        opened
-      };
-    }
-    return state;
-  }
-
-  componentWillUnmount() {
-    if (this.content) {
-      this.content.removeEventListener('DOMNodeInserted', this.onNodeInserted);
-      window.removeEventListener('resize', this.onResize);
-    }
-  }
 
   onNodeInserted = event => {
     const { currentTarget: target } = event;
