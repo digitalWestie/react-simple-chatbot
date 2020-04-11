@@ -149,13 +149,13 @@ class ChatBot extends Component {
     }
 
     window.rsc.refresh = () => {
-      this.load(cacheName,cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus);
-    }
+      this.load(cacheName, cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus);
+    };
 
-    this.load(cacheName,cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus);
+    this.load(cacheName, cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus);
   }
 
-  load = (cacheName,cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus) => {
+  load = (cacheName, cache, firstStep, chatSteps, defaultUserSettings, enableMobileAutoFocus) => {
     storage
       .getData(
         {
@@ -187,7 +187,7 @@ class ChatBot extends Component {
           steps: chatSteps
         });
       });
-  }
+  };
 
   static getDerivedStateFromProps(props, state) {
     const { opened, toggleFloating } = props;
