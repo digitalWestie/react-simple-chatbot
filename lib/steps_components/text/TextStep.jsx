@@ -66,7 +66,7 @@ class TextStep extends Component {
     const showAvatar = user ? !hideUserAvatar : !hideBotAvatar;
 
     return (
-      <TextStepContainer data-key={`${step.id}-${step.key}`} className={`rsc-ts ${user ? 'rsc-ts-user' : 'rsc-ts-bot'}`} user={user}>
+      <TextStepContainer data-key={`${step.id}-${step.key ? step.key : ''}`} className={`rsc-ts ${user ? 'rsc-ts-user' : 'rsc-ts-bot'}`} user={user}>
         <ImageContainer className="rsc-ts-image-container" user={user}>
           {isFirst && showAvatar && (
             <Image
