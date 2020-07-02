@@ -317,7 +317,9 @@ class ChatBot extends Component {
         previousSteps
       });
     } else if (currentStep.trigger) {
-      if (currentStep.replace) { renderedSteps.pop(); }
+      if (currentStep.replace) {
+        renderedSteps.pop();
+      }
 
       const trigger = this.getTriggeredStep(currentStep.trigger, currentStep.value);
       let nextStep = Object.assign({}, steps[trigger]);
