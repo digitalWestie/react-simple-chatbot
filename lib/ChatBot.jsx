@@ -317,9 +317,7 @@ class ChatBot extends Component {
         previousSteps
       });
     } else if (currentStep.trigger) {
-      if (currentStep.replace) {
-        renderedSteps.pop();
-      }
+      if (currentStep.replace) { renderedSteps.pop(); }
 
       const trigger = this.getTriggeredStep(currentStep.trigger, currentStep.value);
       let nextStep = Object.assign({}, steps[trigger]);
@@ -345,6 +343,11 @@ class ChatBot extends Component {
       currentStep = nextStep;
 
       this.setState({ renderedSteps, currentStep, previousStep }, () => {
+        const { cache, cacheName } = this.props;
+        if (cache) {
+          storage.setData(cacheName, { currentStep, previousStep, previousSteps, renderedSteps });
+        }
+
         if (nextStep.user) {
           this.setState({ disabled: false }, () => {
             if (enableMobileAutoFocus || !isMobile()) {
@@ -360,18 +363,6 @@ class ChatBot extends Component {
           this.setState({ renderedSteps, previousSteps });
         }
       });
-    }
-
-    const { cache, cacheName } = this.props;
-    if (cache) {
-      setTimeout(() => {
-        storage.setData(cacheName, {
-          currentStep,
-          previousStep,
-          previousSteps,
-          renderedSteps
-        });
-      }, 300);
     }
   };
 
