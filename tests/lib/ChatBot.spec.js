@@ -208,7 +208,7 @@ describe('ChatBot', () => {
 
     it('should cache the steps', () => {
       const data = parse(localStorage.getItem('rsc_cache'));
-      expect(data.renderedSteps.length).to.be.equal(2);
+      expect(data.renderedSteps.length).to.be.equal(1);
     });
   });
 
@@ -373,7 +373,7 @@ describe('ChatBot', () => {
       expect(wrapper.find('input.rsc-input').props().autoComplete).to.be.equal('firstname');
     });
   });
-  
+
   describe('Extra control', () => {
     const CustomControl = () => (
       <button className="my-button">custom</button>
@@ -417,7 +417,7 @@ describe('ChatBot', () => {
       wrapper.find('input.rsc-input').simulate('keyPress', { key: 'Enter' });
       setTimeout(() => {
         console.log("testing hidden");
-        expect(wrapper.find('div.rsc-controls button.my-button')).to.have.length(0);  
+        expect(wrapper.find('div.rsc-controls button.my-button')).to.have.length(0);
       }, 500);
     });
 
